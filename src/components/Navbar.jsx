@@ -54,14 +54,14 @@ const Navbar = () => {
             </Link>
           </li>
 
-          <li>
+          {/* <li>
             <Link
               href="/profile"
               className="text-slate-300 hover:text-cyan-400 transition"
             >
               My Profile
             </Link>
-          </li>
+          </li> */}
         </ul>
 
         {/* Desktop Buttons */}
