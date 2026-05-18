@@ -47,7 +47,7 @@ const Navbar = () => {
 
           <li>
             <Link
-              href="/courses"
+              href="/tutors"
               className="text-slate-300 hover:text-cyan-400 transition"
             >
               Tutors
