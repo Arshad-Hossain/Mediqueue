@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const TutorsCard = ({ tutor }) => {
@@ -46,9 +47,11 @@ const TutorsCard = ({ tutor }) => {
       </div>
 
       {/* Button */}
-      <button className="w-full mt-6 bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-semibold py-2.5 rounded-xl transition duration-300">
-        Book Session
-      </button>
+      <Link href={"/login"}>
+        <button className="w-full mt-6 bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-semibold py-2.5 rounded-xl transition duration-300">
+          Book Session
+        </button>
+      </Link>
     </div>
   );
 };
