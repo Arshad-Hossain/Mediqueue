@@ -42,11 +42,11 @@ const LoginPage = () => {
     }
   };
 
-  // const handleGoogleSignin = async () => {
-  //   await authClient.signIn.social({
-  //     provider: "google",
-  //   });
-  // };
+  const handleGoogleSignin = async () => {
+    await authClient.signIn.social({
+      provider: "google",
+    });
+  };
 
   return (
     <section className="min-h-screen bg-[#0f172a] flex items-center justify-center px-4 py-10">
@@ -147,7 +147,7 @@ const LoginPage = () => {
 
         {/* Google Button */}
         <Button
-          // onClick={handleGoogleSignin}
+          onClick={handleGoogleSignin}
           variant="bordered"
           className="w-full border-white/10 bg-[#0f172a] text-white hover:border-cyan-400/40 rounded-xl py-6"
         >

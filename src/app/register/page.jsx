@@ -14,6 +14,7 @@ import {
 import { authClient } from "@/lib/auth-client";
 import { redirect } from "next/navigation";
 import { toast } from "react-toastify";
+import { FcGoogle } from "react-icons/fc";
 
 const RegisterPage = () => {
   const onSubmit = async (e) => {
@@ -36,15 +37,12 @@ const RegisterPage = () => {
       toast.error(error.message || "Registration failed");
       return;
     }
+  };
 
-    // if (data) {
-    //   toast("Yaay, Registration Successful!");
-    //   redirect("/login");
-    // }
-
-    // if (error) {
-    //   alert("Error");
-    // }
+  const handleGoogleSignin = async () => {
+    await authClient.signIn.social({
+      provider: "google",
+    });
   };
 
   return (
@@ -126,6 +124,16 @@ const RegisterPage = () => {
             Create Account
           </Button>
         </Form>
+        <div>
+          <Button
+            onClick={handleGoogleSignin}
+            variant="bordered"
+            className="w-full border-white/10 bg-[#0f172a] text-white hover:border-cyan-400/40 rounded-xl py-6"
+          >
+            <FcGoogle className="text-xl" />
+            Sign in with Google
+          </Button>
+        </div>
       </Card>
     </section>
   );
