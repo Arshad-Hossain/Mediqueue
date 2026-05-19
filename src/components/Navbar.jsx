@@ -51,7 +51,14 @@ const Navbar = () => {
                   Home
                 </Link>
               </li>
-
+              <li>
+                <Link
+                  href="/tutors"
+                  className="text-slate-300 hover:text-cyan-400 transition"
+                >
+                  Tutors
+                </Link>
+              </li>
               <li>
                 <Link
                   href="/add-tutor"
@@ -120,14 +127,16 @@ const Navbar = () => {
               </li>
 
               <li>
-                <Button
-                  size="sm"
-                  color="danger"
-                  onClick={handleSignOut}
-                  className="rounded-full"
-                >
-                  Logout
-                </Button>
+                <Link href={"/"}>
+                  <Button
+                    size="sm"
+                    color="danger"
+                    onClick={handleSignOut}
+                    className="rounded-full"
+                  >
+                    Logout
+                  </Button>
+                </Link>
               </li>
             </>
           ) : (
