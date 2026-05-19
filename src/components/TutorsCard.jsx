@@ -47,7 +47,7 @@ const TutorsCard = ({ tutor }) => {
       </div>
 
       {/* Button */}
-      <Link href={"/login"}>
+      <Link href={`/tutors/${tutor._id}`}>
         <button className="w-full mt-6 bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-semibold py-2.5 rounded-xl transition duration-300">
           Book Session
         </button>

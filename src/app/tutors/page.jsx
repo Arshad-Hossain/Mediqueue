@@ -23,7 +23,7 @@ const TutorsPage = async () => {
         </div>
 
         {/* Tutor Cards */}
-        <div className="mt-14 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+        <div className="mt-14 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
           {tutors.map((tutor) => (
             <TutorsCard key={tutor._id} tutor={tutor}></TutorsCard>
           ))}
