@@ -1,3 +1,4 @@
+import { BookSessionModal } from "@/components/BookSessionModal";
 import Image from "next/image";
 import React from "react";
 
@@ -148,9 +149,12 @@ const TutorDetailsPage = async ({ params }) => {
 
             {/* Button */}
             <div className="mt-10">
-              <button className="w-full bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-bold py-4 rounded-2xl transition duration-300 hover:-translate-y-1">
+              {/* <button className="w-full bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-bold py-4 rounded-2xl transition duration-300 hover:-translate-y-1">
                 Book Session
-              </button>
+              </button> */}
+              <div className="mt-10">
+                <BookSessionModal tutor={tutor} />
+              </div>
             </div>
           </div>
         </div>

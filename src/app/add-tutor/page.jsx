@@ -10,6 +10,8 @@ import {
   TextArea,
   TextField,
 } from "@heroui/react";
+import { toast } from "react-toastify";
+import { redirect } from "next/navigation";
 
 const AddTutorPage = () => {
   const handleSubmit = async (e) => {
@@ -29,6 +31,8 @@ const AddTutorPage = () => {
 
     const data = await res.json();
     console.log(data);
+    toast("Yaay, you just added a tutor");
+    redirect("/tutors");
   };
 
   return (
