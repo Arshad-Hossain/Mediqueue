@@ -2,34 +2,56 @@
 
 import { useState } from "react";
 import { Button, Modal } from "@heroui/react";
+import { authClient } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 export function BookSessionModal({ tutor }) {
   const [open, setOpen] = useState(false);
   const [phone, setPhone] = useState("");
 
+  const router = useRouter();
+
+  const { data: session } = authClient.useSession();
+  const user = session?.user;
+
   const handleBooking = async () => {
-    if (!phone) return alert("Phone number required");
+    if (!phone) {
+      alert("Phone number required");
+      return;
+    }
 
     try {
-      await fetch("http://localhost:5000/bookings", {
+      const bookedSessionData = {
+        studentName: user?.name,
+        studentEmail: user?.email,
+        phone: phone,
+        tutorName: tutor?.name,
+        tutorEmail: tutor?.email,
+      };
+
+      const res = await fetch("http://localhost:5000/bookedSession", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          tutorId: tutor._id,
-          tutorName: tutor.name,
-          phone,
-        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(bookedSessionData),
       });
 
-      await fetch(`http://localhost:5000/tutors/${tutor._id}/decrement-slot`, {
-        method: "PATCH",
-      });
+      const data = await res.json();
 
-      alert("Booking confirmed!");
-      setOpen(false);
-      setPhone("");
-    } catch (err) {
-      console.error(err);
+      console.log(data);
+
+      if (data.insertedId) {
+        toast("Booking confirmed!");
+        // alert("Booking confirmed!");
+        setOpen(false);
+        setPhone("");
+
+        router.push("/tutors");
+      }
+    } catch (error) {
+      console.error(error);
       alert("Something went wrong");
     }
   };
@@ -61,18 +83,20 @@ export function BookSessionModal({ tutor }) {
                 {/* Tutor */}
                 <div>
                   <p className="text-sm text-gray-400 mb-1">Tutor Name</p>
+
                   <input
-                    value={tutor.name}
+                    value={tutor?.name || ""}
                     readOnly
                     className="w-full px-3 py-2 rounded-lg bg-[#111827] text-white border border-white/10 focus:outline-none"
                   />
                 </div>
 
-                {/* Email */}
+                {/* Tutor Email */}
                 <div>
                   <p className="text-sm text-gray-400 mb-1">Email</p>
+
                   <input
-                    value={tutor.email || "Not Available"}
+                    value={tutor?.email || "abc@yahoo.com"}
                     readOnly
                     className="w-full px-3 py-2 rounded-lg bg-[#111827] text-white border border-white/10"
                   />
@@ -81,8 +105,9 @@ export function BookSessionModal({ tutor }) {
                 {/* User */}
                 <div>
                   <p className="text-sm text-gray-400 mb-1">Your Name</p>
+
                   <input
-                    value="Logged In User"
+                    value={user?.name || ""}
                     readOnly
                     className="w-full px-3 py-2 rounded-lg bg-[#111827] text-white border border-white/10"
                   />
@@ -91,8 +116,10 @@ export function BookSessionModal({ tutor }) {
                 {/* Phone */}
                 <div>
                   <p className="text-sm text-gray-400 mb-1">
-                    Phone Number <span className="text-red-400">*</span>
+                    Phone Number
+                    <span className="text-red-400">*</span>
                   </p>
+
                   <input
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}

@@ -79,7 +79,7 @@ const Navbar = () => {
 
               <li>
                 <Link
-                  href="/booked-sessions"
+                  href="/my-booked-sessions"
                   className="text-slate-300 hover:text-cyan-400 transition"
                 >
                   My Booked Sessions
