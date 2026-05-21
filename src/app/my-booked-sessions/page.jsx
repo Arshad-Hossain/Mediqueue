@@ -1,8 +1,21 @@
 import BookSessionCard from "@/components/BookSessionCard";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 import React from "react";
 
 const MyBookedSessionPage = async () => {
-  const res = await fetch("http://localhost:5000/bookedSession");
+  const { token } = await auth.api.getToken({
+    headers: await headers(),
+  });
+
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/bookedSession`,
+    {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    },
+  );
   const bookedSessions = await res.json();
 
   return (

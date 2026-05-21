@@ -1,8 +1,18 @@
 import MyTutorsCard from "@/components/MyTutorsCard";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 import React from "react";
 
 const MyTutorsPage = async () => {
-  const res = await fetch("http://localhost:5000/mytutors");
+  const { token } = await auth.api.getToken({
+    headers: await headers(),
+  });
+
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/mytutors`, {
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  });
   const mytutors = await res.json();
   console.log(mytutors);
   return (

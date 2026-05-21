@@ -1,5 +1,6 @@
 "use client";
 
+import { authClient } from "@/lib/auth-client";
 import {
   Button,
   FieldError,
@@ -40,13 +41,18 @@ export function EditTutorModal({ tutor }) {
       .map((day) => day.trim());
 
     try {
-      const res = await fetch(`http://localhost:5000/mytutors/${_id}`, {
-        method: "PATCH",
-        headers: {
-          "content-type": "application/json",
+      const { data: tokenData } = await authClient.token();
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/mytutors/${_id}`,
+        {
+          method: "PATCH",
+          headers: {
+            "content-type": "application/json",
+            authorization: `Bearer ${tokenData?.token}`,
+          },
+          body: JSON.stringify(updatedTutor),
         },
-        body: JSON.stringify(updatedTutor),
-      });
+      );
 
       const data = await res.json();
       router.refresh();

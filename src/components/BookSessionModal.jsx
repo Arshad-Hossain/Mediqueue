@@ -31,14 +31,17 @@ export function BookSessionModal({ tutor }) {
       };
 
       const { data: tokenData } = await authClient.token();
-      const res = await fetch("http://localhost:5000/bookedSession", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          authorization: `Bearer ${tokenData?.token}`,
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/bookedSession`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: `Bearer ${tokenData?.token}`,
+          },
+          body: JSON.stringify(bookedSessionData),
         },
-        body: JSON.stringify(bookedSessionData),
-      });
+      );
 
       const data = await res.json();
 

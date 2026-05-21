@@ -2,7 +2,7 @@ import React from "react";
 import TutorsCard from "./TutorsCard";
 
 const AvailableTutors = async () => {
-  const res = await fetch("http://localhost:5000/tutors-six");
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/tutors-six`);
   const tutors = await res.json();
   return (
     <section className="bg-[#0f172a] py-16 sm:py-20 text-white">

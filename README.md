@@ -1,36 +1,111 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 📚 MediQueue - Tutor Booking System
 
-## Getting Started
+## 🌐 Live Website
 
-First, run the development server:
+🔗 https://mediqueue-tau.vercel.app/
+
+---
+
+## 📖 Overview
+
+MediQueue is a modern tutor booking and management platform that allows students to discover tutors, schedule sessions, and manage bookings seamlessly. The platform provides secure authentication, responsive design, and an intuitive user experience for both tutors and students.
+
+---
+
+## ✨ Features
+
+- 🔐 Secure authentication using Better Auth and JWT
+- 📅 Easy tutor booking and scheduling system
+- 👨‍🏫 Tutor profile and session management
+- 📱 Fully responsive design for all devices
+- ⚡ Fast and optimized performance with Next.js
+- 🎨 Modern UI built with Hero UI and Gravity UI
+- 🔔 Interactive icons and smooth user experience using React Icons
+- 🛡️ Protected routes and secure API integration
+- 📂 User dashboard for managing bookings and sessions
+- 🌙 Clean and user-friendly interface
+
+---
+
+## 🛠️ Technologies Used
+
+### Frontend
+
+- Next.js
+- React.js
+- Hero UI
+- Gravity UI
+- React Icons
+- Tailwind CSS
+- Better Auth
+
+### Backend
+
+- Node.js
+- Express.js
+- JWT Authentication
+
+### Database & Deployment
+
+- MongoDB
+- REST API
+- Vercel
+
+---
+
+## 🚀 Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/your-username/mediqueue.git
+```
+
+Navigate to the project folder:
+
+```bash
+cd mediqueue
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## 🔑 Environment Variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Create a `.env.local` file in the root directory and add the following:
 
-## Learn More
+```env
+NEXT_PUBLIC_API_URL=your_api_url
+JWT_SECRET=your_jwt_secret
+DATABASE_URL=your_database_url
+BETTER_AUTH_SECRET=your_secret
+```
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🌐 Live Link
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+https://mediqueue-tau.vercel.app/
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🤝 Contributing
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Contributions are welcome! Feel free to fork the repository and submit a pull request.
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License.

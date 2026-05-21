@@ -1,5 +1,6 @@
 "use client";
 
+import { authClient } from "@/lib/auth-client";
 import React, { useState } from "react";
 import { FaTimes } from "react-icons/fa";
 
@@ -16,11 +17,14 @@ const BookSessionCard = ({ bookSession }) => {
 
       setSessions(updatedSessions);
 
+      const { data: tokenData } = await authClient.token();
+
       // backend update
-      await fetch(`http://localhost:5000/bookedSession/${id}`, {
+      await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/bookedSession/${id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
+          authorization: `Bearer ${tokenData?.token}`,
         },
         body: JSON.stringify({
           status: "cancelled",
