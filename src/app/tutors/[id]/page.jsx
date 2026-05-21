@@ -1,15 +1,23 @@
 import { BookSessionModal } from "@/components/BookSessionModal";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 import Image from "next/image";
 import React from "react";
 
 const TutorDetailsPage = async ({ params }) => {
   const { id } = await params;
 
-  const res = await fetch("http://localhost:5000/tutors");
+  const { token } = await auth.api.getToken({
+    headers: await headers(),
+  });
 
-  const tutors = await res.json();
+  const res = await fetch(`http://localhost:5000/tutors/${id}`, {
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  });
 
-  const tutor = tutors.find((tutor) => tutor._id == id);
+  const tutor = await res.json();
 
   return (
     <section className="bg-[#111827] py-16 sm:py-20 text-white min-h-screen">

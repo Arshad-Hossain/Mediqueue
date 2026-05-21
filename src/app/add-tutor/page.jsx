@@ -12,6 +12,7 @@ import {
 } from "@heroui/react";
 import { toast } from "react-toastify";
 import { redirect } from "next/navigation";
+import { authClient } from "@/lib/auth-client";
 
 const AddTutorPage = () => {
   const handleSubmit = async (e) => {
@@ -21,10 +22,13 @@ const AddTutorPage = () => {
     const addtutor = Object.fromEntries(formData.entries());
     console.log(addtutor);
 
+    const { data: tokenData } = await authClient.token();
+
     const res = await fetch("http://localhost:5000/mytutors", {
       method: "POST",
       headers: {
         "content-type": "application/json",
+        authorization: `Bearer ${tokenData?.token}`,
       },
       body: JSON.stringify(addtutor),
     });
