@@ -21,6 +21,7 @@ const TutorDetailsPage = async ({ params }) => {
   );
 
   const tutor = await res.json();
+  const noSlots = tutor.remainingSlots <= 0;
 
   return (
     <section className="bg-[#111827] py-16 sm:py-20 text-white min-h-screen">
@@ -160,12 +161,20 @@ const TutorDetailsPage = async ({ params }) => {
 
             {/* Button */}
             <div className="mt-10">
-              {/* <button className="w-full bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-bold py-4 rounded-2xl transition duration-300 hover:-translate-y-1">
-                Book Session
-              </button> */}
-              <div className="mt-10">
+              {/* <div className="mt-10">
                 <BookSessionModal tutor={tutor} />
-              </div>
+              </div> */}
+
+              {noSlots ? (
+                <button
+                  disabled
+                  className="w-full bg-red-500/20 text-red-400 font-bold py-4 rounded-2xl cursor-not-allowed"
+                >
+                  No Slot Left For Now
+                </button>
+              ) : (
+                <BookSessionModal tutor={tutor} />
+              )}
             </div>
           </div>
         </div>

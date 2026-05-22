@@ -12,11 +12,12 @@ import {
 } from "@heroui/react";
 
 import { authClient } from "@/lib/auth-client";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { FcGoogle } from "react-icons/fc";
 
 const RegisterPage = () => {
+  const router = useRouter();
   const onSubmit = async (e) => {
     e.preventDefault();
 
@@ -31,11 +32,13 @@ const RegisterPage = () => {
     });
 
     if (!error) {
-      toast("Yaay, Registration Successful!");
-      redirect("/login");
+      await authClient.signOut();
+
+      toast.success("Yaay, Registration Successful!");
+
+      router.push("/login");
     } else {
       toast.error(error.message || "Registration failed");
-      return;
     }
   };
 
